@@ -10,10 +10,10 @@
         "antd": "^4.7.0",
         "babel-plugin-import": "^1.13.1",
         "dva": "^2.4.1",
-        "node-sass": "^4.14.1",
+        "node-sass": "^4.11.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
-        "sass-loader": "^10.0.3"
+        "sass-loader": "^7.3.0"
     },
     "devDependencies": {
         "babel-plugin-dva-hmr": "^0.3.2",
