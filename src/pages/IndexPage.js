@@ -11,7 +11,7 @@ import NavBar from './NavBar';
 const { Header, Content } = Layout;
 
 function IndexPage(props) {
-	const { routes } = props;
+	const { routes, app } = props;
 	return (
 		<Layout className={styles.layout}>
 			<Header className={styles.header}>
@@ -22,7 +22,11 @@ function IndexPage(props) {
 				<Switch>
 					{
 						routes.map((route, i) => (
-							<SubRoutes key={i} {...route} />
+							<SubRoutes
+								key={i}
+								{...route}
+								app={app}
+							/>
 						))
 					}
 					{/* 重定向 */}

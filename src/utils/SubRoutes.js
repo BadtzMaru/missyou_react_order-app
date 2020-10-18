@@ -1,13 +1,24 @@
 import React from 'react';
 import { Route, Redirect } from 'dva/router';
+import dynamic from 'dva/dynamic';
 
 import NoMatch from '../components/NoMatch';
 
-export function SubRoutes({ routes, component: Component }) {
+const DynamicComponent = (app, model, component, routes) => dynamic({
+    app,
+    models: () => model,
+    component: () =>
+        component().then(res => {
+            const Component = res.default || res;
+            return props => <Component {...props} app={app} routes={routes} />;
+        })
+    ,
+});
+
+export function SubRoutes({ routes, component, app, model }) {
     return (
         <Route
-            render={props => <Component {...props} routes={routes} />
-            }
+            component={DynamicComponent(app, model, component, routes)}
         />
     );
 }
