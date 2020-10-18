@@ -8,6 +8,7 @@
     },
     "dependencies": {
         "antd": "3.13.3",
+        "axios": "^0.20.0",
         "babel-plugin-import": "^1.13.1",
         "dva": "^2.4.1",
         "node-sass": "^4.11.1",

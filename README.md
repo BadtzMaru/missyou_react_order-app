@@ -18,3 +18,11 @@
         ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]
     ];
 }`
+
+# antd Form 表单提供的方法
+`Form.create()(组件名)`
+1. getFieldDecorator("字段名",{配置信息})(表单组件)
+2. getFieldValue("字段名")
+3. validateFields((err,values)=>{
+    if (!err) console.log(values);
+})
