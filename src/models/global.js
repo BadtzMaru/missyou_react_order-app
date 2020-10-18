@@ -6,7 +6,7 @@ export default {
 		userInfo: {
 			name: null,
 			pwd: null,
-			id: null,
+			id: 1,
 		},
 	},
 
