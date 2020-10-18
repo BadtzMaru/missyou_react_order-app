@@ -9,7 +9,7 @@ const RouteConfig = [
 		component: () => import('./pages/IndexPage'),
 		model: [],
 		routes: [
-			{ path: '/home', component: () => import('./pages/Home'), redirect: true, model: [] },
+			{ path: '/home', component: () => import('./pages/Home'), redirect: true, model: [import('./models/home')] },
 			{ path: '/menus', component: () => import('./pages/Menus'), model: [] },
 			{ path: '/admin', component: () => import('./pages/Admin'), model: [] },
 			{ path: '/about', component: () => import('./pages/About'), model: [] },
