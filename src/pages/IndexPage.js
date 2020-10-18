@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 // 引入路由需要的组件
 import { Switch } from 'dva/router';
 
-import { SubRoutes, RedirectRoute, NoMatchRoute } from '../utils/SubRoutes';
+import SubRoutes, { RedirectRoute, NoMatchRoute } from '../utils/SubRoutes';
 import styles from './IndexPage.scss';
 import NavBar from './NavBar';
 
