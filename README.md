@@ -8,12 +8,12 @@
 3. 替换成`require("history").createHashHistory`
 
 # 安装依赖包
-1. `yarn add node-sass@4.11.1 sass-loader@7.3.0 antd`
+1. `yarn add node-sass@4.11.1 sass-loader@7.3.0 antd@3.13.3`
 2. `yarn add babel-plugin-import`
 
 # 配置antd按需加载 -> .webpackrc.js
 1. .webpackrc 改成 .webpackrc.js
-2. 添加 `{
+2. 添加 `export default {
     extraBabelPlugins: [
         ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]
     ];
