@@ -1,8 +1,47 @@
 import React, { Component } from 'react';
-import { Menu } from 'antd';
+import { Menu, Dropdown, Icon } from 'antd';
 import { Link } from 'dva/router';
 
 import style from './index.scss';
+
+const menus = [
+    {
+        key: 'home',
+        path: '/home',
+        name: '主页',
+    },
+    {
+        key: 'menus',
+        path: '/menus',
+        name: '菜单',
+    },
+    {
+        key: 'admin',
+        path: '/admin',
+        name: '管理',
+    },
+    {
+        key: 'about',
+        path: '/about',
+        name: '关于我们',
+    },
+    {
+        key: 'login',
+        path: '/login',
+        name: '登录',
+        className: style.login,
+        isAuthority: true,
+    },
+    {
+        key: 'register',
+        path: '/register',
+        name: '注册',
+        className: style.register,
+        isAuthority: true,
+    },
+];
+
+
 
 export default class index extends Component {
     constructor(props) {
@@ -26,6 +65,19 @@ export default class index extends Component {
             selectedKeys: [key],
         });
     };
+    handleClickMenu = ({ key }) => {
+        if (key === 'logout') {
+            localStorage.clear();
+            this.props.history.push('/login');
+        }
+    };
+    menu = (
+        <Menu onClick={this.handleClickMenu}>
+            <Menu.Item key="logout">
+                <span>退出</span>
+            </Menu.Item>
+        </Menu>
+    );
     render() {
         return (
             <nav className={style.header}>
@@ -57,25 +109,23 @@ export default class index extends Component {
                     defaultSelectedKeys={["home"]}
                     selectedKeys={this.state.selectedKeys}
                 >
-                    <Menu.Item key={"home"}>
-                        <Link to="/home">主页</Link>
-                    </Menu.Item>
-                    <Menu.Item key={"menus"}>
-                        <Link to="/menus">菜单</Link>
-                    </Menu.Item>
-                    <Menu.Item key={"admin"}>
-                        <Link to="/admin">管理</Link>
-                    </Menu.Item>
-                    <Menu.Item key={"about"}>
-                        <Link to="/about">关于我们</Link>
-                    </Menu.Item>
-                    <Menu.Item key={"login"} className={style.login}>
-                        <Link to="/login">登录</Link>
-                    </Menu.Item>
-                    <Menu.Item key={"register"} className={style.register}>
-                        <Link to="/register">注册</Link>
-                    </Menu.Item>
+                    {
+                        menus.filter(({ isAuthority }) => !(isAuthority && localStorage.key && localStorage.email)).map(({ key, path, name, className }, index) => (
+                            <Menu.Item key={key} className={className}>
+                                <Link to={path}>{name}</Link>
+                            </Menu.Item>
+                        ))
+                    }
                 </Menu>
+                {/* 用户email和退出 */}
+                {localStorage.email && localStorage.key && (
+                    <Dropdown overlay={this.menu} className={style['dropdown-menu']}>
+                        <a href="/">
+                            <span className={style.email}>{localStorage.email}</span>
+                            <Icon className={style.icon} type="down" />
+                        </a>
+                    </Dropdown>
+                )}
             </nav>
         );
     }

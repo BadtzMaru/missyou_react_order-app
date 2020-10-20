@@ -12,7 +12,7 @@ const DynamicComponent = (app, model, component, routes, isAuthority, userInfo) 
         component().then(res => {
             if (isAuthority) {
                 // 判断userInfo.id是否有内容
-                if (!userInfo.id) {
+                if (!localStorage.key || !localStorage.email) {
                     return () => <Redirect to="/login" />;
                 }
             }
