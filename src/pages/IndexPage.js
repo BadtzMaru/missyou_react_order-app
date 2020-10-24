@@ -20,17 +20,11 @@ function IndexPage(props) {
 			<Content className={styles.content}>
 				{/* 一级路由 */}
 				<Switch>
-					{
-						routes.map((route, i) => (
-							<SubRoutes
-								key={i}
-								{...route}
-								app={app}
-							/>
-						))
-					}
+					{routes.map((route, i) => (
+						<SubRoutes key={i} {...route} app={app} />
+					))}
 					{/* 重定向 */}
-					<RedirectRoute exact={true} from={"/"} routes={routes} />
+					<RedirectRoute exact={true} from={'/'} routes={routes} />
 					{/* 输入的连接不存在时,跳转到NoMatch */}
 					<NoMatchRoute />
 				</Switch>
@@ -39,7 +33,6 @@ function IndexPage(props) {
 	);
 }
 
-IndexPage.propTypes = {
-};
+IndexPage.propTypes = {};
 
 export default connect()(IndexPage);

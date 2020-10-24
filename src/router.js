@@ -55,9 +55,10 @@ const RouteConfig = [
 							{
 								path: '/about/contact/address',
 								model: [],
-								component: () => import('./pages/About/Address'),
+								component: () =>
+									import('./pages/About/Address'),
 							},
-						]
+						],
 					},
 					{
 						path: '/about/orderingGuide',
@@ -69,7 +70,7 @@ const RouteConfig = [
 						model: [],
 						component: () => import('./pages/About/Delivery'),
 					},
-				]
+				],
 			},
 			{
 				path: '/login',
@@ -81,7 +82,7 @@ const RouteConfig = [
 				component: () => import('./pages/User/Register'),
 				model: [],
 			},
-		]
+		],
 	},
 ];
 
@@ -89,15 +90,9 @@ function RouterConfig({ history, app }) {
 	return (
 		<Router history={history}>
 			<Switch>
-				{
-					RouteConfig.map((route, i) => (
-						<SubRoutes
-							key={i}
-							{...route}
-							app={app}
-						/>
-					))
-				}
+				{RouteConfig.map((route, i) => (
+					<SubRoutes key={i} {...route} app={app} />
+				))}
 			</Switch>
 		</Router>
 	);
